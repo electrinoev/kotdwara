@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+content="width=device-width,initial-scale=1.0">
 
 <title>Kotdwara Delivery</title>
 
@@ -24,6 +24,11 @@ background:#f5f5f5;
 color:#222;
 }
 
+body.dark{
+background:#111;
+color:#fff;
+}
+
 header{
 background:#0a7cff;
 color:#fff;
@@ -41,18 +46,30 @@ font-size:22px;
 font-weight:bold;
 }
 
-.menu{
-font-size:30px;
+.right{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.icon-btn{
+background:none;
+border:none;
+color:#fff;
+font-size:22px;
 cursor:pointer;
+width:auto;
+padding:0;
 }
 
 #drawer{
 position:fixed;
 top:0;
-left:-270px;
-width:260px;
+left:-280px;
+width:270px;
 height:100%;
 background:#222;
+overflow:auto;
 transition:.3s;
 z-index:9999;
 padding-top:60px;
@@ -64,10 +81,6 @@ padding:16px;
 color:#fff;
 text-decoration:none;
 border-bottom:1px solid #333;
-}
-
-#drawer a:hover{
-background:#333;
 }
 
 .section{
@@ -84,7 +97,12 @@ background:#fff;
 padding:15px;
 border-radius:12px;
 margin-bottom:15px;
-box-shadow:0 2px 6px rgba(0,0,0,.1);
+box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.dark .card{
+background:#222;
+color:#fff;
 }
 
 h2{
@@ -93,6 +111,7 @@ margin-bottom:10px;
 
 input,
 textarea,
+select,
 button{
 width:100%;
 padding:12px;
@@ -100,6 +119,14 @@ margin-top:10px;
 border:1px solid #ddd;
 border-radius:8px;
 font-size:16px;
+}
+
+.dark input,
+.dark textarea,
+.dark select{
+background:#333;
+color:#fff;
+border-color:#444;
 }
 
 button{
@@ -116,10 +143,14 @@ line-height:1.7;
 margin-top:15px;
 }
 
+.dark .notice{
+background:#4b4300;
+}
+
 #map{
 height:300px;
-margin-top:10px;
 border-radius:10px;
+margin-top:10px;
 }
 
 footer{
@@ -139,26 +170,38 @@ background:#25d366;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:30px;
 text-decoration:none;
+font-size:30px;
 color:#fff;
 box-shadow:0 2px 10px rgba(0,0,0,.3);
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
+
 <div class="logo">
 Kotdwara Delivery
 </div>
 
-<div class="menu"
+<div class="right">
+
+<button
+class="icon-btn"
+onclick="darkMode()">
+🌙
+</button>
+
+<button
+class="icon-btn"
 onclick="toggleMenu()">
 ☰
+</button>
+
 </div>
+
 </header>
 
 <div id="drawer">
@@ -171,6 +214,21 @@ onclick="showPage('home')">
 <a href="#"
 onclick="showPage('order')">
 📦 Order Item
+</a>
+
+<a href="#"
+onclick="showPage('history')">
+🧾 Order History
+</a>
+
+<a href="#"
+onclick="showPage('about')">
+ℹ️ About Us
+</a>
+
+<a href="#"
+onclick="showPage('faq')">
+❓ FAQ
 </a>
 
 <a href="#"
@@ -202,11 +260,11 @@ Kotdwara se koi bhi saman mangaiye.
 
 <div class="notice">
 
-✅ Product Payment Shop par hogi.<br>
+✅ Product Payment Direct Shop par hogi.<br>
 ✅ Delivery Charge ₹50 only.<br>
 ✅ No Login Required.<br>
-✅ Order WhatsApp ke through bheja jayega.
-
+✅ Order WhatsApp ke through bheja jayega.<br>
+✅  1000+ Happy Customers.
 </div>
 
 <button
@@ -217,6 +275,7 @@ onclick="showPage('order')">
 </div>
 
 </div>
+
 
 <!-- ORDER -->
 
@@ -245,6 +304,32 @@ placeholder="Item Name">
 id="shop"
 placeholder="Shop Name">
 
+<select id="category">
+
+<option>Grocery</option>
+<option>Medicine</option>
+<option>Food</option>
+<option>Documents</option>
+<option>Other</option>
+
+</select>
+
+<select id="deliveryTime">
+
+<option>
+As Soon As Possible
+</option>
+
+<option>
+Within 1 Hour
+</option>
+
+<option>
+Today
+</option>
+
+</select>
+
 <textarea
 id="address"
 placeholder="Delivery Address">
@@ -256,7 +341,8 @@ placeholder="Extra Details">
 </textarea>
 
 <p
-style="margin-top:15px;
+style="
+margin-top:15px;
 font-weight:bold;">
 📍 Select Your Current Location
 </p>
@@ -283,6 +369,101 @@ Send Order On WhatsApp
 
 </div>
 
+
+<!-- HISTORY -->
+
+<div id="history"
+class="section">
+
+<div class="card">
+
+<h2>
+Order History
+</h2>
+
+<div id="historyList">
+No Orders Yet
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<div id="about"
+class="section">
+
+<div class="card">
+
+<h2>
+About Us
+</h2>
+
+<p>
+Kotdwara Delivery ek local delivery
+service hai.
+</p>
+
+<p style="margin-top:10px;">
+Hum Kotdwara se aapke liye
+saman laakar ghar tak pahuchate hain.
+</p>
+
+<p style="margin-top:10px;">
+Delivery Charge ₹50 only.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- FAQ -->
+
+<div id="faq"
+class="section">
+
+<div class="card">
+
+<h2>
+FAQ
+</h2>
+
+<p>
+Q. Product ki payment?
+</p>
+
+<p>
+A. Direct shop par.
+</p>
+
+<br>
+
+<p>
+Q. Delivery Charge?
+</p>
+
+<p>
+A. ₹50 only.
+</p>
+
+<br>
+
+<p>
+Q. Kya login zaruri hai?
+</p>
+
+<p>
+A. Nahi.
+</p>
+
+</div>
+
+</div>
+
+
 <!-- CONTACT -->
 
 <div id="contact"
@@ -305,14 +486,23 @@ Delivery Charge:
 ₹50
 </p>
 
+<a href="tel:8941875809">
+
+<button>
+📞 Call Now
+</button>
+
+</a>
+
 <button
 onclick="contactUs()">
-Open WhatsApp
+💬 Open WhatsApp
 </button>
 
 </div>
 
 </div>
+
 
 <!-- TERMS -->
 
@@ -326,35 +516,53 @@ Terms & Conditions
 </h2>
 
 <p>
-1. Service sirf Kotdwara aur aas-paas ke area ke liye hai.
-</p><br>
+1. Service sirf Kotdwara aur aas-paas
+ke area ke liye hai.
+</p>
+
+<br>
 
 <p>
-2. Product ki payment direct shop par hogi.
-</p><br>
+2. Product ki payment direct shop
+par hogi.
+</p>
+
+<br>
 
 <p>
 3. Delivery Charge ₹50 per order hai.
-</p><br>
+</p>
+
+<br>
 
 <p>
-4. Galat address dene par order cancel kiya ja sakta hai.
-</p><br>
+4. Galat address dene par order
+cancel kiya ja sakta hai.
+</p>
+
+<br>
 
 <p>
-5. Delivery time traffic aur shop availability par depend karega.
-</p><br>
+5. Delivery time traffic aur shop
+availability par depend karega.
+</p>
+
+<br>
 
 <p>
-6. Order bhejne ka matlab hai ki aap in terms ko accept karte hain.
+6. Order bhejne ka matlab hai ki
+aap in terms ko accept karte hain.
 </p>
 
 </div>
 
 </div>
 
+
 <footer>
-© Kotdwara Delivery
+© Kotdwara Delivery <br>
+Sponsored By<br>
+Rawat Associates
 </footer>
 
 <a
@@ -363,6 +571,7 @@ href="https://wa.me/918941875809"
 target="_blank">
 💬
 </a>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
@@ -370,12 +579,12 @@ target="_blank">
 /* ========= MENU ========= */
 
 function toggleMenu(){
-  const drawer =
+  const d =
     document.getElementById("drawer");
 
-  drawer.style.left =
-    drawer.style.left === "0px"
-    ? "-270px"
+  d.style.left =
+    d.style.left === "0px"
+    ? "-280px"
     : "0px";
 }
 
@@ -393,13 +602,34 @@ function showPage(id){
 
   document
     .getElementById("drawer")
-    .style.left = "-270px";
+    .style.left = "-280px";
 
   setTimeout(() => {
     if(window.map){
       map.invalidateSize();
     }
   },300);
+}
+
+/* ========= DARK MODE ========= */
+
+function darkMode(){
+
+  document.body
+    .classList.toggle("dark");
+
+  localStorage.setItem(
+    "dark",
+    document.body.classList.contains("dark")
+  );
+
+}
+
+if(
+localStorage.getItem("dark")
+=== "true"
+){
+  document.body.classList.add("dark");
 }
 
 /* ========= WHATSAPP ========= */
@@ -437,7 +667,8 @@ lng.toFixed(6);
 
 /* ========= MAP CLICK ========= */
 
-map.on("click",
+map.on(
+"click",
 function(e){
 
 lat =
@@ -520,12 +751,50 @@ maximumAge:0
 function contactUs(){
 
 window.open(
-"https://wa.me/"
-+ whatsapp,
+"https://wa.me/" +
+whatsapp,
 "_blank"
 );
 
 }
+
+/* ========= ORDER HISTORY ========= */
+
+function loadHistory(){
+
+let orders =
+JSON.parse(
+localStorage.getItem(
+"orders"
+) || "[]"
+);
+
+let html = "";
+
+orders.forEach(x=>{
+
+html += `
+<div style="
+padding:10px 0;
+border-bottom:1px solid #ddd;">
+
+<b>${x.id}</b><br>
+${x.item}<br>
+${x.date}
+
+</div>
+`;
+
+});
+
+document.getElementById(
+"historyList"
+).innerHTML =
+html || "No Orders Yet";
+
+}
+
+loadHistory();
 
 /* ========= SEND ORDER ========= */
 
@@ -561,6 +830,16 @@ document.getElementById(
 "note"
 ).value.trim();
 
+let category =
+document.getElementById(
+"category"
+).value;
+
+let deliveryTime =
+document.getElementById(
+"deliveryTime"
+).value;
+
 if(
 !name ||
 !phone ||
@@ -575,16 +854,59 @@ return;
 
 if(phone.length < 10){
 alert(
-"Please enter a valid mobile number."
+"Enter valid mobile number."
 );
 return;
 }
+
+/* Save customer */
+
+localStorage.setItem(
+"custName",
+name
+);
+
+localStorage.setItem(
+"custPhone",
+phone
+);
+
+/* Order ID */
 
 let orderId =
 "KD" +
 Date.now()
 .toString()
 .slice(-8);
+
+/* Save order */
+
+let orders =
+JSON.parse(
+localStorage.getItem(
+"orders"
+) || "[]"
+);
+
+orders.unshift({
+
+id:orderId,
+item:item,
+date:new Date()
+.toLocaleString()
+
+});
+
+localStorage.setItem(
+"orders",
+JSON.stringify(
+orders
+)
+);
+
+loadHistory();
+
+/* Message */
 
 let mapLink =
 "https://www.google.com/maps?q="
@@ -604,11 +926,17 @@ ${name}
 📞 Mobile:
 ${phone}
 
+📂 Category:
+${category}
+
 📦 Item:
 ${item}
 
 🏪 Shop:
 ${shop || "Not Mentioned"}
+
+⏰ Delivery Time:
+${deliveryTime}
 
 📍 Address:
 ${address}
@@ -620,10 +948,14 @@ ${mapLink}
 ${note || "None"}
 
 💵 Product Payment:
-Direct Shop par
+Direct Shop Par
 
 🚚 Delivery Charge:
 ₹50`;
+
+alert(
+"Order Ready.\nWhatsApp khul raha hai."
+);
 
 window.open(
 "https://wa.me/"
@@ -635,7 +967,23 @@ encodeURIComponent(msg),
 
 }
 
-/* ========= LOAD CURRENT GPS ========= */
+/* ========= AUTO FILL ========= */
+
+document.getElementById(
+"name"
+).value =
+localStorage.getItem(
+"custName"
+) || "";
+
+document.getElementById(
+"phone"
+).value =
+localStorage.getItem(
+"custPhone"
+) || "";
+
+/* ========= AUTO GPS ========= */
 
 setTimeout(() => {
 getCurrentLocation();
