@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kotdwara Fast Delivery</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f7fb;
+color:#333;
+}
+
+header{
+background:linear-gradient(135deg,#0d6efd,#00b4ff);
+color:#fff;
+padding:50px 20px;
+text-align:center;
+}
+
+header h1{
+font-size:40px;
+margin-bottom:15px;
+}
+
+header p{
+font-size:18px;
+line-height:1.8;
+}
+
+.container{
+width:95%;
+max-width:1000px;
+margin:auto;
+padding:20px 0;
+}
+
+.card{
+background:#fff;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+h2{
+margin-bottom:20px;
+color:#0d6efd;
+}
+
+input,textarea,select{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#25D366;
+color:#fff;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1eb85a;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+}
+
+@media(max-width:700px){
+.grid{
+grid-template-columns:1fr;
+}
+}
+
+.track{
+background:#fff3cd;
+padding:15px;
+border-radius:10px;
+font-weight:bold;
+text-align:center;
+font-size:22px;
+margin-bottom:20px;
+}
+
+.info{
+background:#eef5ff;
+padding:20px;
+border-radius:10px;
+line-height:1.8;
+}
+
+.ad iframe{
+width:100%;
+height:300px;
+border:none;
+border-radius:12px;
+}
+
+footer{
+background:#111;
+color:#fff;
+text-align:center;
+padding:30px;
+margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>🚚 Kotdwara Fast Delivery</h1>
+
+<p>
+अब मंगाओ कुछ भी, घर बैठे पूरे कोटद्वार में मात्र ₹50 डिलीवरी चार्ज के साथ!<br><br>
+
+💊 दवा हो या दारू<br>
+🍔 खाना हो या पीना<br>
+📦 छोटी से छोटी चीज़ – बस एक क्लिक से!
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="track">
+Tracking Number:
+<span id="track"></span>
+</div>
+
+<div class="card">
+<h2>🚚 Delivery Information</h2>
+
+<div class="info">
+📍 Kotdwara (10 KM तक): 10–30 Minutes | ₹50<br>
+📍 Dugadda: 1–2 Hours | ₹100<br>
+📍 Najibabad: 1–2 Hours | ₹100<br>
+📍 Hill Areas: ₹200<br><br>
+
+⏰ Service Timing: 10:00 AM – 7:00 PM
+</div>
+</div>
+
+<div class="card ad">
+<h2>⚡ Sponsored</h2>
+
+<iframe src="https://electrinoev.github.io/"></iframe>
+</div>
+
+<div class="card">
+
+<h2>🛒 Order From Any Shop</h2>
+
+<input id="cname" placeholder="Your Name">
+<input id="cmobile" placeholder="Mobile Number">
+<textarea id="caddress"
+placeholder="Delivery Address"></textarea>
+
+<input id="landmark"
+placeholder="Landmark">
+
+<input id="clocation"
+placeholder="Google Map Delivery Link">
+
+<hr style="margin:20px 0">
+
+<input id="shopname"
+placeholder="Shop Name">
+
+<input id="shopaddress"
+placeholder="Shop Address">
+
+<input id="shopmobile"
+placeholder="Shop Mobile Number">
+
+<input id="shopmap"
+placeholder="Google Map Shop Link">
+
+<textarea id="items"
+placeholder="What do you want to order?"></textarea>
+
+<input id="amount"
+type="number"
+placeholder="Approx Bill Amount">
+
+<select id="payment">
+<option>Cash on Delivery</option>
+<option>UPI Payment</option>
+<option>Courier Partner Will Pay</option>
+</select>
+
+<button onclick="shopOrder()">
+Book Order on WhatsApp
+</button>
+
+</div>
+
+<div class="card ad">
+<h2>⚡ Sponsored</h2>
+
+<iframe src="https://electrinoev.github.io/"></iframe>
+</div>
+
+<div class="card">
+
+<h2>📦 Send a Parcel</h2>
+
+<div class="grid">
+
+<div>
+<input id="pname"
+placeholder="Pickup Person Name">
+
+<input id="pmobile"
+placeholder="Pickup Mobile Number">
+
+<textarea id="paddress"
+placeholder="Pickup Address"></textarea>
+
+<input id="pmap"
+placeholder="Pickup Google Map Link">
+</div>
+
+<div>
+<input id="rname"
+placeholder="Receiver Name">
+
+<input id="rmobile"
+placeholder="Receiver Mobile Number">
+
+<textarea id="raddress"
+placeholder="Receiver Address"></textarea>
+
+<input id="rmap"
+placeholder="Receiver Google Map Link">
+</div>
+
+</div>
+
+<textarea id="parcel"
+placeholder="Parcel Details"></textarea>
+
+<button onclick="parcelOrder()">
+Send Parcel on WhatsApp
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>📦 Order Status</h2>
+
+<div class="info">
+🟡 Order Received<br>
+🟠 Rider Assigned<br>
+🔵 Parcel Picked Up<br>
+🟣 Out For Delivery<br>
+🟢 Delivered
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+📞 WhatsApp Booking: 8941875809<br>
+⏰ Timing: 10:00 AM – 7:00 PM<br><br>
+
+Kotdwara Fast Delivery<br>
+Fast • Safe • Reliable
+
+</footer>
+
+<script>
+
+const tracking =
+"KDW-" +
+new Date().getFullYear() +
+Math.floor(Math.random()*100000);
+
+document.getElementById("track").innerText =
+tracking;
+
+function shopOrder(){
+
+let msg = `
+🛒 NEW SHOP ORDER
+
+Tracking No: ${tracking}
+
+Customer:
+${cname.value}
+
+Mobile:
+${cmobile.value}
+
+Address:
+${caddress.value}
+
+Landmark:
+${landmark.value}
+
+Location:
+${clocation.value}
+
+Shop:
+${shopname.value}
+
+Shop Address:
+${shopaddress.value}
+
+Shop Mobile:
+${shopmobile.value}
+
+Shop Location:
+${shopmap.value}
+
+Items:
+${items.value}
+
+Approx Amount:
+₹${amount.value}
+
+Payment:
+${payment.value}
+`;
+
+window.open(
+"https://wa.me/918941875809?text="+
+encodeURIComponent(msg)
+);
+
+}
+
+function parcelOrder(){
+
+let msg = `
+📦 NEW PARCEL BOOKING
+
+Tracking No:
+${tracking}
+
+Pickup Name:
+${pname.value}
+
+Pickup Mobile:
+${pmobile.value}
+
+Pickup Address:
+${paddress.value}
+
+Pickup Location:
+${pmap.value}
+
+Receiver Name:
+${rname.value}
+
+Receiver Mobile:
+${rmobile.value}
+
+Receiver Address:
+${raddress.value}
+
+Receiver Location:
+${rmap.value}
+
+Parcel Details:
+${parcel.value}
+`;
+
+window.open(
+"https://wa.me/918941875809?text="+
+encodeURIComponent(msg)
+);
+
+}
+
+</script>
+
+</body>
+</html>
